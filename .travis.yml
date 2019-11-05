@@ -1,12 +1,15 @@
 sudo: false
 
-jobs:
+matrix:
   include:
-    # These are the latest Go versions.
     - os: linux
       dist: xenial
       language: go
       go: 1.13.x
+      cache:
+        directories:
+          - $HOME/.cache/go-build
+          - $HOME/gopath/pkg/mod
       branches:
         only:
           - master
@@ -18,6 +21,10 @@ jobs:
     - os: osx
       language: go
       go: 1.13.x
+      cache:
+        directories:
+          - $HOME/Library/Caches/go-build
+          - $HOME/gopath/pkg/mod
       branches:
         only:
           - master
